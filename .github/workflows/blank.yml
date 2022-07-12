@@ -12,7 +12,7 @@ jobs:
           channel-id: C03GW7Y6YKE
           payload: |
             {
-              "text": "@${ github.actor } created a new pooled issue '${ github.event.issue.title }'",
+              "text": "@${ github.actor } created a new pooled issue '${ github.event.issue.title }' #16553",
               "blocks": [{
                   "type": "header",
                   "text": {
