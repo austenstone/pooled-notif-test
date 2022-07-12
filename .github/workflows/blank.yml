@@ -16,7 +16,7 @@ jobs:
           channel-id: C03GW7Y6YKE
           payload: |
             {
-              "text": "@${{ github.event.issue.assignee.login }} created a new pooled issue '${{ github.event.issue.title }}' #${{ github.event.issue.number }}",
+              "text": "@${{ github.event.issue.user.login }} created a new pooled issue '${{ github.event.issue.title }}' #${{ github.event.issue.number }}",
               "blocks": [
                 {
                   "type": "section",
@@ -29,11 +29,11 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Who:* <https://github.com/${{ github.event.issue.assignee.login }}|@${{ github.event.issue.assignee.login }}>\n*Labels:* ${{ join(github.event.issue.labels.*.name, ', ') }}"
+                    "text": "*Who:* <https://github.com/${{ github.event.issue.user.login }}|@${{ github.event.issue.user.login }}>\n*Labels:* ${{ join(github.event.issue.labels.*.name, ', ') }}"
                   },
                   "accessory": {
                     "type": "image",
-                    "image_url": "${{ github.event.issue.assignee.avatar_url }}",
+                    "image_url": "${{ github.event.issue.user.avatar_url }}",
                     "alt_text": "github avatar"
                   }
                 },
