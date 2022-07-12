@@ -16,7 +16,7 @@ jobs:
           channel-id: C03GW7Y6YKE
           payload: |
             {
-              "text": "@${{ github.event.issue.user.login }} created a new pooled issue '${{ github.event.issue.title }}' #${{ github.event.issue.number }}",
+              "text": "New pooled issue created by @${{ github.event.issue.user.login }}",
               "blocks": [{
                   "type": "section",
                   "text": {
@@ -48,7 +48,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${ github.event.issue.body }"
+                    "text": "${{ github.event.issue.body }}"
                   }
                 }]
               }],
