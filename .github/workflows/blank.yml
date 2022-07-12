@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Markdown Converter
+        if: github.event.issue.body
         id: slack-md-converter
         uses: LoveToKnow/slackify-markdown-action@v1.0.0
         with:
