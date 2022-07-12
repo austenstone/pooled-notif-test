@@ -19,36 +19,32 @@ jobs:
               "text": "@${{ github.event.issue.user.login }} created a new pooled issue '${{ github.event.issue.title }}' #${{ github.event.issue.number }}",
               "blocks": [
                 {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "A new pooled Solutions-Engineering issue has been created:\n*<${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>*"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*Who:* <https://github.com/${{ github.event.issue.user.login }}|@${{ github.event.issue.user.login }}>\n*Labels:* ${{ join(github.event.issue.labels.*.name, ', ') }}"
-                  },
-                  "accessory": {
-                    "type": "image",
-                    "image_url": "${{ github.event.issue.user.avatar_url }}",
-                    "alt_text": "github avatar"
-                  }
-                },
-                {
-                  "type": "actions",
-                  "elements": [
                     {
-                      "type": "button",
+                      "type": "section",
                       "text": {
-                        "type": "plain_text",
-                        "emoji": true,
-                        "text": "Assign Me"
+                        "type": "mrkdwn",
+                        "text": "<https://github.com/${{ github.event.issue.user.login }}|@${{ github.event.issue.user.login }}> created a new pooled issue\n*<${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>*\nLabels:* ${{ join(github.event.issue.labels.*.name, ', ') }}"
                       },
-                      "style": "primary",
-                      "value": "assign"
+                      "accessory": {
+                        "type": "image",
+                        "image_url": "${{ github.event.issue.user.avatar_url }}",
+                        "alt_text": "github avatar"
+                      }
+                    },
+                    {
+                      "type": "actions",
+                      "elements": [
+                        {
+                          "type": "button",
+                          "text": {
+                            "type": "plain_text",
+                            "emoji": true,
+                            "text": "Assign Me"
+                          },
+                          "style": "primary",
+                          "value": "assign"
+                        }
+                      ]
                     }
                   ]
                 }
