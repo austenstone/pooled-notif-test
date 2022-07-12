@@ -10,6 +10,12 @@ jobs:
   slack-notification:
     runs-on: ubuntu-latest
     steps:
+      - name: Serialize Body
+        uses: actions/github-script@v6
+        id: set-result
+        with:
+          script: return context.issue.body
+          result-encoding: string
       - name: Slack Send
         uses: slackapi/slack-github-action@34c3fd73326693ef04728f8611669d918a2d781d
         with:
@@ -48,7 +54,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{ github.event.issue.body || 'No description provided.' }}"
+                    "text": "${{ toJSON(github.event.issue.body) || 'No description provided.' }}"
                   }
                 }]
               }],
