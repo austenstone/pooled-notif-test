@@ -65,13 +65,7 @@ jobs:
                     }
                   ]
                 }
-              ],
-              "metadata": {
-                  "issue": {
-                    "number": "${{ github.event.issue.number }}",
-                    "title": "${{ github.event.issue.title }}"
-                  }
-              }
+              ]
             }
         env:
           SLACK_BOT_TOKEN: '${{ secrets.SLACK_POOLED_NOTIF_TOKEN }}'
