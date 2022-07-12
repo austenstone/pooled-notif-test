@@ -10,12 +10,11 @@ jobs:
   slack-notification:
     runs-on: ubuntu-latest
     steps:
-      - name: Serialize Body
-        uses: actions/github-script@v6
-        id: set-result
+      - name: Slack Markdown Converter
+        id: slack-md-converter
+        uses: LoveToKnow/slackify-markdown-action@v1.0.0
         with:
-          script: return context.issue.body
-          result-encoding: string
+          text: ${{ github.event.issue.body }}
       - name: Slack Send
         uses: slackapi/slack-github-action@34c3fd73326693ef04728f8611669d918a2d781d
         with:
@@ -54,7 +53,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ${{ toJSON(github.event.issue.body) || 'No description provided.' }}
+                    "text": ${{ steps.slack-md-converter.outputs.text || 'No description provided.' }}
                   }
                 }]
               }],
