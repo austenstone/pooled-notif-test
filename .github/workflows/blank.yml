@@ -68,7 +68,8 @@ jobs:
                 "event_payload": {
                   "number": "${{ github.event.issue.number }}",
                   "title": "${{ github.event.issue.title }}",
-                  "html_url": "${{ github.event.issue.html_url }}"
+                  "html_url": "${{ github.event.issue.html_url }}",
+                  "created_at": "${{ github.event.issue.created_at }}"
                 }
               }
             }
