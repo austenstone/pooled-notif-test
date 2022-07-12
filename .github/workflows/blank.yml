@@ -53,7 +53,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ${{ steps.slack-md-converter.outputs.text || 'No description provided.' }}
+                    "text": ${{ toJSON(steps.slack-md-converter.outputs.text) || 'No description provided.' }}
                   }
                 }]
               }],
