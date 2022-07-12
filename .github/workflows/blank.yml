@@ -20,7 +20,7 @@ jobs:
         id: create-message
         with:
           script: |
-            return '*<${{ github.event.issue.html_url }}|#${{ github.event.issue.number }} ${{ github.event.issue.title }}>*' + JSON.stringify(`${{ steps.slack-md-converter.outputs.text }}`)
+            return '*<${{ github.event.issue.html_url }}|#${{ github.event.issue.number }} ${{ github.event.issue.title }}>*' + JSON.stringify(`${{ steps.slack-md-converter.outputs.text }}`).splice(1,-1)
           result-encoding: string
       - name: Get result
         run: echo "${{steps.set-result.outputs.result}}"
