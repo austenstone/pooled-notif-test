@@ -54,7 +54,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ${{ toJSON(github.event.issue.body) || "No description provided." }}
+                    "text": ${{ toJSON(github.event.issue.body) || \"No description provided.\" }}
                   }
                 }]
               }],
