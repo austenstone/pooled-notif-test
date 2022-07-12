@@ -12,24 +12,25 @@ jobs:
           channel-id: C03GW7Y6YKE
           payload: |
             {
-              "text": "@${ github.actor } created a new pooled issue '${ github.event.issue.title }' #16553",
-              "blocks": [{
-                  "type": "header",
+              "blocks": [
+                {
+                  "type": "section",
                   "text": {
-                    "type": "plain_text",
-                    "text": "New Pooled Request Alert",
-                    "emoji": true
+                    "type": "mrkdwn",
+                    "text": "A new pooled Solutions-Engineering issue has been created:\n*<${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>*"
                   }
                 },
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "A new pooled Solutions-Engineering issue has been created by @${ github.actor }} \n\n <${ github.event.issue.html_url }|${ github.event.issue.title }>"
+                    "text": "*Who:*\n<github.com/${{ github.event.issue.assignee.login }}|@${{ github.event.issue.assignee.login }}>\n*Labels:*\n${{ join(github.event.issue.labels.*.name, ', ') }}"
+                  },
+                  "accessory": {
+                    "type": "image",
+                    "image_url": "${{ github.event.issue.assignee.avatar_url }}",
+                    "alt_text": "github avatar"
                   }
-                },
-                {
-                  "type": "divider"
                 },
                 {
                   "type": "actions",
@@ -39,20 +40,10 @@ jobs:
                       "text": {
                         "type": "plain_text",
                         "emoji": true,
-                        "text": "Approve"
+                        "text": "Assign Me"
                       },
                       "style": "primary",
-                      "value": "click_me_123"
-                    },
-                    {
-                      "type": "button",
-                      "text": {
-                        "type": "plain_text",
-                        "emoji": true,
-                        "text": "Reject"
-                      },
-                      "style": "danger",
-                      "value": "click_me_123"
+                      "value": "assign"
                     }
                   ]
                 }
