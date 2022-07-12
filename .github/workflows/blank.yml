@@ -70,7 +70,8 @@ jobs:
                 "event_type": "issue",
                 "event_payload": {
                   "number": "${{ github.event.issue.number }}",
-                  "title": "${{ github.event.issue.title }}"
+                  "title": "${{ github.event.issue.title }}",
+                  "html_url": "${{ github.event.issue.html_url }}"
                 }
               }
             }
