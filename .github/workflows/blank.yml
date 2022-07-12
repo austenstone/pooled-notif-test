@@ -32,11 +32,29 @@ jobs:
                   "type": "divider"
                 },
                 {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Please respond with a :checked: If you can take the issue or an :x: to inform others you cannot."
-                  }
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "emoji": true,
+                        "text": "Approve"
+                      },
+                      "style": "primary",
+                      "value": "click_me_123"
+                    },
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "emoji": true,
+                        "text": "Reject"
+                      },
+                      "style": "danger",
+                      "value": "click_me_123"
+                    }
+                  ]
                 }
               ]
             }
