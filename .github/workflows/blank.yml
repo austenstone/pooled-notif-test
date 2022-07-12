@@ -1,6 +1,10 @@
 name: (TEST) SLACK POOLED
 
-on: workflow_dispatch
+
+on:
+  issues:
+    workflow_dispatch:
+    types: [opened, edited, milestoned]
 
 jobs:
   slack-notification:
