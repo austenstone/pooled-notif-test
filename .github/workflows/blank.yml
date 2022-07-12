@@ -15,6 +15,15 @@ jobs:
         uses: LoveToKnow/slackify-markdown-action@v1.0.0
         with:
           text: ${{ github.event.issue.body }}
+      - name: Create Message
+        uses: actions/github-script@v6
+        id: create-message
+        with:
+          script: |
+            return '*<${{ github.event.issue.html_url }}|#${{ github.event.issue.number }} ${{ github.event.issue.title }}>*' + JSON.stringify(${{ toJSON(steps.slack-md-converter.outputs.text) || 'No description provided.' }})
+          result-encoding: string
+      - name: Get result
+        run: echo "${{steps.set-result.outputs.result}}"
       - name: Slack Send
         uses: slackapi/slack-github-action@34c3fd73326693ef04728f8611669d918a2d781d
         with:
@@ -26,7 +35,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "New pooled issue created by <https://github.com/${{ github.event.issue.user.login }}|@${{ github.event.issue.user.login }}>\n*<${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>*"
+                    "text": "New pooled issue created by <https://github.com/${{ github.event.issue.user.login }}|@${{ github.event.issue.user.login }}>"
                   }
                 },
                 {
@@ -48,7 +57,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ${{ toJSON(steps.slack-md-converter.outputs.text) || 'No description provided.' }}
+                    "text": ${{ steps.create-message.outputs.result }}
                   }
                 }]
               }],
