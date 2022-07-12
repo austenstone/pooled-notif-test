@@ -48,7 +48,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{ github.event.issue.body }}"
+                    "text": "${{ github.event.issue.body || 'No description provided.' }}"
                   }
                 }]
               }],
