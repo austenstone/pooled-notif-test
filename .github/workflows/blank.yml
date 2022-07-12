@@ -4,7 +4,6 @@ on: workflow_dispatch
 
 jobs:
   slack-notification:
-    if: github.event.label.name == 'pooled'
     runs-on: ubuntu-latest
     steps:
       - name: Slack Send
