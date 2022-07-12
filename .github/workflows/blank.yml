@@ -16,6 +16,7 @@ jobs:
           channel-id: C03GW7Y6YKE
           payload: |
             {
+              "text": "@${{ github.event.issue.assignee.login }} created a new pooled issue '${{ github.event.issue.title }}' #${{ github.event.issue.number }}",
               "blocks": [
                 {
                   "type": "section",
@@ -28,7 +29,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "*Who:*\n<github.com/${{ github.event.issue.assignee.login }}|@${{ github.event.issue.assignee.login }}>\n*Labels:*\n${{ join(github.event.issue.labels.*.name, ', ') }}"
+                    "text": "*Who:* <https://github.com/${{ github.event.issue.assignee.login }}|@${{ github.event.issue.assignee.login }}>\n*Labels:* ${{ join(github.event.issue.labels.*.name, ', ') }}"
                   },
                   "accessory": {
                     "type": "image",
@@ -48,6 +49,19 @@ jobs:
                       },
                       "style": "primary",
                       "value": "assign"
+                    }
+                  ]
+                }
+              ],
+              "attachments": [
+                {
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "${{ github.event.issue.body }}"
+                      }
                     }
                   ]
                 }
