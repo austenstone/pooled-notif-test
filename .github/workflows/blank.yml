@@ -69,7 +69,9 @@ jobs:
                   "number": "${{ github.event.issue.number }}",
                   "title": "${{ github.event.issue.title }}",
                   "html_url": "${{ github.event.issue.html_url }}",
-                  "created_at": "${{ github.event.issue.created_at }}"
+                  "updated_at": "${{ github.event.issue.updated_at }}",
+                  "repo_name": "${{ github.event.issue.repository.name }}",
+                  "repo_name": "${{ github.event.issue.repository.owner.login }}"
                 }
               }
             }
