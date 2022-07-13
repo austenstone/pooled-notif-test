@@ -29,7 +29,7 @@ jobs:
       - name: Slack Send
         uses: slackapi/slack-github-action@34c3fd73326693ef04728f8611669d918a2d781d
         with:
-          channel-id: C03P93WFV1Q
+          channel-id: C03GW7Y6YKE
           payload: |
             {
               "text": "New pooled issue created by @${{ github.event.issue.user.login }}",
