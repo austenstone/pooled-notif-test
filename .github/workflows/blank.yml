@@ -10,8 +10,8 @@ on:
 
 jobs:
   slack-notification:
-    name: Slack Notification
     if: github.event.label.name == 'pooled'
+    name: Slack Notification
     runs-on: ubuntu-latest
     steps:
       - name: Create message
@@ -19,12 +19,11 @@ jobs:
         id: create-message
         with:
           script: |
-            return JSON.stringify('*<${{ github.event.issue.html_url }}|#${{ github.event.issue.number }} ${{ github.event.issue.title }}>*').slice(1,-1)
-          result-encoding: string
+            return 'New pooled issue created by @${{ github.event.issue.user.login }}\n*<${{ github.event.issue.html_url }}|#${{ github.event.issue.number }} ${{ github.event.issue.title }}>*'
       - name: Slack Send
         uses: slackapi/slack-github-action@34c3fd73326693ef04728f8611669d918a2d781d
         with:
-          channel-id: C03GW7Y6YKE
+          channel-id: ${{ env.CHANNEL_ID }}
           payload: |
             {
               "text": "New pooled issue created by @${{ github.event.issue.user.login }}",
@@ -32,7 +31,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "New pooled issue created by @${{ github.event.issue.user.login }}\n${{ steps.create-message.outputs.result }}"
+                    "text": ${{ steps.create-message.outputs.result }}
                   }
                 },
                 {
@@ -63,4 +62,5 @@ jobs:
               }
             }
         env:
+          CHANNEL_ID: 'C03GW7Y6YKE'
           SLACK_BOT_TOKEN: '${{ secrets.SLACK_POOLED_NOTIF_TOKEN }}'
