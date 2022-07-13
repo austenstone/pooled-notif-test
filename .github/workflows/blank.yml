@@ -62,7 +62,7 @@ jobs:
                   "html_url": "${{ github.event.issue.html_url }}",
                   "updated_at": "${{ github.event.issue.updated_at }}",
                   "repo_name": "${{ github.event.repository.name }}",
-                  "repo_owner": "${{ github.event.repository.owner.login }}"
+                  "repo_owner": "${{ github.event.repository.owner.login }}",
                   "repository_owner_id": ${{ github.repository_owner_id }}
                 }
               }
