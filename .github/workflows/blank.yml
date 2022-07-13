@@ -1,31 +1,26 @@
-name: (TEST) SLACK POOLED
+# This is a workflow to send a simple slack notification when issue has a pooled label added to it. 
+# It is managed and owned by the corp-amer-se team. Specifically @logan-porelle
 
+name: Pooled Request Notification
 
 on:
   issues:
-    workflow_dispatch:
-    types: [opened, edited, milestoned]
+    types:
+      - labeled
 
 jobs:
   slack-notification:
     name: Slack Notification
+    if: github.event.label.name == 'pooled'
     runs-on: ubuntu-latest
     steps:
-      - name: Slack Markdown Converter
-        if: github.event.issue.body
-        id: slack-md-converter
-        uses: LoveToKnow/slackify-markdown-action@v1.0.0
-        with:
-          text: ${{ github.event.issue.body }}
-      - name: Create Message
+      - name: Create message
         uses: actions/github-script@v6
         id: create-message
         with:
           script: |
             return JSON.stringify('*<${{ github.event.issue.html_url }}|#${{ github.event.issue.number }} ${{ github.event.issue.title }}>*').slice(1,-1)
           result-encoding: string
-      - name: Get result
-        run: echo "${{steps.set-result.outputs.result}}"
       - name: Slack Send
         uses: slackapi/slack-github-action@34c3fd73326693ef04728f8611669d918a2d781d
         with:
